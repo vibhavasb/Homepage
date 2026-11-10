@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Start</title>
+  <style>
+    :root {
+      --bg: #090a0f;
+      --surface: #14161f;
+      --surface-active: #1f2230;
+      --text: #e2e8f0;
+      --text-muted: #64748b;
+      --accent: #38bdf8;
+      --border: #222634;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end; /* Keeps everything within easy thumb reach */
+      padding: 24px 20px 36px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* Clock & Date Header */
+    header {
+      margin-bottom: auto;
+      padding-top: 15vh;
+      text-align: center;
+    }
+
+    #clock {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    #date {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    /* Search Bar */
+    .search-wrapper {
+      position: relative;
+      margin: 28px 0;
+      display: flex;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 4px;
+      transition: border-color 0.2s;
+    }
+
+    .search-wrapper:focus-within {
+      border-color: var(--accent);
+    }
+
+    .engine-btn {
+      background: var(--surface-active);
+      color: var(--accent);
+      border: none;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .search-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      padding: 12px 14px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* Quick-Link Tile Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .tile {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--text);
+      gap: 8px;
+      transition: transform 0.1s ease, background-color 0.15s ease;
+    }
+
+    .tile:active {
+      transform: scale(0.94);
+      background: var(--surface-active);
+    }
+
+    .tile-icon {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(56, 189, 248, 0.1);
+      border-radius: 10px;
+    }
+
+    .tile-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div id="clock">00:00</div>
+    <div id="date">Loading...</div>
+  </header>
+
+  <form id="search-form" class="search-wrapper" action="https://www.google.com/search" method="GET">
+    <button type="button" id="engine-toggle" class="engine-btn" title="Tap to switch search engine">G</button>
+    <input type="text" id="search-input" name="q" class="search-input" placeholder="Search or enter query..." autocomplete="off" required>
+  </form>
+
+  <main class="grid">
+    <a href="https://github.com" class="tile">
+      <div class="tile-icon">GH</div>
+      <span class="tile-label">GitHub</span>
+    </a>
+    <a href="https://scholar.google.com" class="tile">
+      <div class="tile-icon">GS</div>
+      <span class="tile-label">Scholar</span>
+    </a>
+    <a href="https://pubmed.ncbi.nlm.nih.gov" class="tile">
+      <div class="tile-icon">PM</div>
+      <span class="tile-label">PubMed</span>
+    </a>
+    <a href="https://www.rcsb.org" class="tile">
+      <div class="tile-icon">PDB</div>
+      <span class="tile-label">RCSB</span>
+    </a>
+    <a href="https://news.ycombinator.com" class="tile">
+      <div class="tile-icon">HN</div>
+      <span class="tile-label">HackerNews</span>
+    </a>
+    <a href="https://reddit.com" class="tile">
+      <div class="tile-icon">RD</div>
+      <span class="tile-label">Reddit</span>
+    </a>
+    <a href="https://youtube.com" class="tile">
+      <div class="tile-icon">YT</div>
+      <span class="tile-label">YouTube</span>
+    </a>
+    <a href="https://mail.google.com" class="tile">
+      <div class="tile-icon">GM</div>
+      <span class="tile-label">Gmail</span>
+    </a>
+  </main>
+
+  <script>
+    // 1. Live Clock & Date
+    function updateTime() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${hours}:${minutes}`;
+
+      const options = { weekday: 'short', month: 'short', day: 'numeric' };
+      document.getElementById('date').textContent = now.toLocaleDateString('en-US', options);
+    }
+    updateTime();
+    setInterval(updateTime, 10000);
+
+    // 2. Search Engine Switcher (Tap the badge on the left of the search bar)
+    const engines = [
+      { label: 'G', action: 'https://www.google.com/search', param: 'q', placeholder: 'Search Google...' },
+      { label: 'DDG', action: 'https://duckduckgo.com/', param: 'q', placeholder: 'Search DuckDuckGo...' },
+      { label: 'Brv', action: 'https://search.brave.com/search', param: 'q', placeholder: 'Search Brave...' },
+      { label: 'Wiki', action: 'https://en.wikipedia.org/w/index.php', param: 'search', placeholder: 'Search Wikipedia...' }
+    ];
+
+    let currentIdx = parseInt(localStorage.getItem('startpage_engine') || '0', 10);
+    const form = document.getElementById('search-form');
+    const toggleBtn = document.getElementById('engine-toggle');
+    const input = document.getElementById('search-input');
+
+    function applyEngine(idx) {
+      const engine = engines[idx];
+      toggleBtn.textContent = engine.label;
+      form.action = engine.action;
+      input.name = engine.param;
+      input.placeholder = engine.placeholder;
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      currentIdx = (currentIdx + 1) % engines.length;
+      localStorage.setItem('startpage_engine', currentIdx);
+      applyEngine(currentIdx);
+      input.focus();
+    });
+
+    applyEngine(currentIdx);
+  </script>
+</body>
+</html>
